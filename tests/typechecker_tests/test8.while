@@ -1,0 +1,6 @@
+begin
+  int a;
+  bool b;
+  a := 10;
+  b := (a < 20) and true
+end

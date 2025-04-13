@@ -1,0 +1,16 @@
+function test8
+  i := 0
+  limit := 10
+  sum := 0    
+  unused_in_loop := 5 
+LoopStart:
+  if i < limit goto LoopBody
+  goto LoopEnd
+LoopBody:
+  # sum := sum + i 
+  i := i + 1
+  goto LoopStart
+LoopEnd:
+  dead_after := i
+  return i
+end function

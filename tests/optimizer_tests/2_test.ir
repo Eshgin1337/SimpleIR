@@ -1,0 +1,7 @@
+function test1
+  a := 10    
+  b := 20    
+  c := 30    
+  unused := 99 
+  return b
+end function

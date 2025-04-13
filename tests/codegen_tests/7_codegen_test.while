@@ -1,0 +1,12 @@
+begin
+  i := 0;
+  limit := 5;
+  accum := 10;
+  while i < limit do begin
+    if i < 3 then
+      accum := accum + 1
+    else
+      skip;
+    i := i + 1
+  end
+end

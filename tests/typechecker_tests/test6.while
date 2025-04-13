@@ -1,0 +1,4 @@
+begin
+  int x;
+  if x then skip else x := 3
+end

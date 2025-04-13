@@ -1,0 +1,10 @@
+begin
+  x := 1;
+  begin
+    skip;
+    x := x + 2;
+    skip
+  end;
+  y := x + 3;
+  skip
+end

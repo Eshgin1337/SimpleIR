@@ -1,0 +1,11 @@
+function test5
+  y := 0
+  z := 10
+  if y != 0 goto L1
+  goto L2
+L1:
+  dead_var := 5
+  z := 20
+L2:
+  return z
+end function

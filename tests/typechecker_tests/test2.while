@@ -1,0 +1,4 @@
+begin
+  bool flag;
+  flag := true
+end

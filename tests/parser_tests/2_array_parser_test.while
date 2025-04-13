@@ -1,0 +1,6 @@
+begin
+i := 2;
+x := 5;
+a[i * 3] := x + 1;
+data[count + 1] := value * 2
+end

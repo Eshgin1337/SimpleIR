@@ -1,0 +1,8 @@
+n := 10
+a := 0
+b := 1
+while n > 0 do
+  c := a + b
+  a := b
+  b := c
+  n := n - 1

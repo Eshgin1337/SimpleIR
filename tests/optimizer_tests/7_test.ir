@@ -1,0 +1,7 @@
+function test6
+  ptr := call get_pointer 
+  val := 100               
+  dead_result := call print  
+  dummy := call cleanup      
+  return 0
+end function

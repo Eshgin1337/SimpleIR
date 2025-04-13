@@ -1,0 +1,6 @@
+function test2
+  a := 100  
+  a := 200  
+  b := a  
+  return b
+end function

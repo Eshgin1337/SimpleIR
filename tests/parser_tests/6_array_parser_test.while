@@ -1,0 +1,5 @@
+begin i:=0;
+while i<5 do begin if a[i]=0 then b[i]:=100 else b[i]:=a[i]; 
+
+
+i:=i+1 end end

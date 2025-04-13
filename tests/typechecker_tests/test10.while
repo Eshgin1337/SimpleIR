@@ -1,0 +1,6 @@
+begin
+  int x;
+  bool y;
+  x := (5 + 3) * (10 - 2);
+  y := not (x < 50) or (true and false)
+end

@@ -1,0 +1,1 @@
+begin x:=a[(i+j)*2]+b[k-(1+1)];a[x]:=a[x-1]*(y+z) end

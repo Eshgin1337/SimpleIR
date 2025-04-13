@@ -1,0 +1,6 @@
+a := 15
+b := 10
+if a > b then
+  result := a - b
+else
+  result := b - a

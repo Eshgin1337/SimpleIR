@@ -1,0 +1,6 @@
+function test3
+  x := 5
+  y := x + 1
+  z := y * 2
+  return z
+end function

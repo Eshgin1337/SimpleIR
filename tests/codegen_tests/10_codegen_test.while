@@ -1,0 +1,8 @@
+begin
+   a := 2;
+   b := 3;
+   c := 4;
+   result1 := a + (b * c);
+   result2 := (a + b) * c;
+   final := result1 - result2
+end

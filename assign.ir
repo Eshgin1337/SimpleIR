@@ -1,0 +1,7 @@
+function main
+_t1 := 10
+x := _t1
+_t2 := x
+y := _t2
+return 0
+end function

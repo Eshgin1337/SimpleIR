@@ -1,0 +1,12 @@
+begin
+  count := 0;
+  value := dataarray [ count + 1 ] ;
+  dataarray [ 0 ] := value * 2;
+
+  if value > 100 and not done then
+     result := dataarray[ indexvar ] 
+  else
+     skip;
+
+  pos := ( A [ 5 ] ) 
+end 

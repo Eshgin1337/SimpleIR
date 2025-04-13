@@ -1,0 +1,2 @@
+begin val:=matrix[row[i]];
+matrix[row[i+1]]:=val+1 end

@@ -1,0 +1,25 @@
+function main
+  _t1 := 2
+  a := _t1
+  _t2 := 3
+  b := _t2
+  _t3 := 4
+  c := _t3
+  _t4 := a
+  _t5 := b
+  _t6 := c
+  _t7 := _t5 * _t6
+  _t8 := _t4 + _t7
+  result1 := _t8
+  _t9 := a
+  _t10 := b
+  _t11 := _t9 + _t10
+  _t12 := c
+  _t13 := _t11 * _t12
+  result2 := _t13
+  _t14 := result1
+  _t15 := result2
+  _t16 := _t14 - _t15
+  final := _t16
+  return 0
+end function

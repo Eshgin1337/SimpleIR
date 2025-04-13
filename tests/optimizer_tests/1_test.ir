@@ -1,0 +1,6 @@
+function main
+x := 5
+y := 10
+z := y + 1
+return z
+end function
