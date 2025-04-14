@@ -1,1 +1,1 @@
-begin i:=0;while i<n do begin a[i]:=i;i:=i+1 end end
+begin int a[5];a[0]:=1;a:=10 end
