@@ -1,8 +1,6 @@
-grammar While; // Combined Grammar: Declarations + Statements + Arrays
+grammar While;
 
-// ----- PARSER RULES -----
 
-// Statement rule 's': can be a declaration or an executable command
 s   : declaration # DeclarationStmt  // Declaration: int x; bool a[10];
     | assignment # AssignmentStmt    // Assignment: x := e; a[e] := e
     | skip_stmt # Skip             // Skip: skip

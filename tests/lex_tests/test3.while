@@ -1,6 +1,6 @@
-a := 15
-b := 10
+int a := 15
+int b := 10
 if a > b then
-  result := a - b
+  int result := a - b
 else
-  result := b - a
+  int result := b - a

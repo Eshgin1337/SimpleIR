@@ -1,8 +1,8 @@
-n := 10
-a := 0
-b := 1
+int n := 10
+int a := 0
+int b := 1
 while n > 0 do
-  c := a + b
+  int c := a + b
   a := b
   b := c
   n := n - 1

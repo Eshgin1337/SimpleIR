@@ -1,1 +1,1 @@
-begin int a[1];int b[6];a[0]:=10;b[5]:=1 end
+int a[1];int b[6];a[0]:=10;b[5]:=1

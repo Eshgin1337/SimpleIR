@@ -3,5 +3,5 @@ begin
   int x;
   a[1] := 10;
   a[2] := 20;
-  x := a[1]
+  int x := a[1]
 end

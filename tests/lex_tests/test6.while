@@ -1,5 +1,5 @@
-x := 15
-if x % 2 == 0 then
-  result := 0
+int x := 15
+if x / 2 = 0 then
+  int result := 0
 else
-  result := 1
+  int result := 1
