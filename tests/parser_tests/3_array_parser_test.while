@@ -1,1 +1,1 @@
-begin x := a[0]; y := b[i + 1] + 2; value := data[index] end
+begin int x;int y;int a[2];int b[10];b[5]:=100;x:=a[0];y:=b[0]+x;a[1]:=y+7 end

@@ -1,1 +1,1 @@
-begin if a[b[i]]>0 then x:=1 else x:=2 end
+begin bool flags[3];flags[0]:=1 end

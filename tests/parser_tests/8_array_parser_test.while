@@ -1,2 +1,1 @@
-begin val:=matrix[row[i]];
-matrix[row[i+1]]:=val+1 end
+begin int idx[1];int data[4];idx[0]:=3;data[idx[0]]:=55+idx[0] end

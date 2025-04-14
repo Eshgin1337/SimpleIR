@@ -1,5 +1,1 @@
-begin i:=0;
-while i<5 do begin if a[i]=0 then b[i]:=100 else b[i]:=a[i]; 
-
-
-i:=i+1 end end
+begin int a[12];int x;a[10]:=5;a[11]:=2;if a[10]>a[11]*2 then x:=1 else x:=0 end
