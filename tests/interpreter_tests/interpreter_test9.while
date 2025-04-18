@@ -1,0 +1,16 @@
+begin
+ int items[4];
+ int sum;
+ int i;
+ items[0] := 5;
+ items[1] := 10;
+ items[2] := 15;
+ items[3] := 20;
+ sum := 0;
+ i := 0;
+ while i < 4 do 
+    begin
+        sum := sum + items[i];
+        i := i + 1
+    end
+end

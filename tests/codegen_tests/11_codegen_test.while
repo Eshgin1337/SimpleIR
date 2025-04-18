@@ -1,0 +1,8 @@
+begin
+  int nums[3];
+  int val;
+  nums[0] := 11;
+  nums[1] := 22;
+  nums[2] := nums[0] + nums[1]; 
+  val := nums[2] 
+end

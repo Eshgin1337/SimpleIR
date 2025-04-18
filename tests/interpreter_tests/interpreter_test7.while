@@ -1,11 +1,9 @@
 begin
-  int a;
-  int b;
-  int c;
-  a := 3;
-  b := 5;
-  if (a * 2 = b) and (a + b > 7) then
-    c := 100
-  else
-    c := 50
+ int nums[3]; 
+ nums[0] := 3; 
+ nums[1] := 5; 
+ if (nums[0] * 2 = nums[1]) and (nums[0] + nums[1] > 7) then
+  nums[2] := 100 
+ else
+  nums[2] := 50
 end

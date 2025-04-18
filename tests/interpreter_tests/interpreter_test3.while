@@ -1,10 +1,8 @@
 begin
-  int x;
-  int y;
-  int z;
-  int result;
-  x := 10;
-  y := 20;
-  z := x + y;
-  result := z * 2 - x / 5
+ int vals[3]; 
+ int result;
+ vals[0] := 10; 
+ vals[1] := 20; 
+ vals[2] := vals[0] + vals[1]; 
+ result := vals[2] * 2 - vals[0] / 5
 end

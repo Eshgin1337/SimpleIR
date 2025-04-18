@@ -1,0 +1,22 @@
+begin
+ int grid[6]; 
+ int rows;    
+ int cols;    
+ int r;       
+ int c;       
+ int val;     
+ rows := 2;   
+ cols := 3;   
+ r := 0;      
+ while r < rows do 
+    begin
+        c := 0;     
+        while c < cols do 
+            begin
+                grid[r * cols + c] := (r + 1) * 10 + (c + 1); 
+                c := c + 1  
+            end; 
+            r := r + 1   
+    end;
+val := grid[4] 
+end

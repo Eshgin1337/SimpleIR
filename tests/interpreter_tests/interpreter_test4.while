@@ -1,6 +1,8 @@
 begin
-  int x;
-  x := 0;
-  while x < 3 do
-    x := x + 1
+ int vals[3]; 
+ int result;
+ vals[0] := 10; 
+ vals[1] := 20; 
+ vals[2] := vals[0] + vals[1]; 
+ result := vals[2] * 2 - vals[0] / 5
 end

@@ -1,0 +1,7 @@
+begin
+ int sparse[5];
+ int readVal;
+ sparse[1] := 99;
+ sparse[3] := 101;
+ readVal := sparse[0] + sparse[2] + sparse[4]
+end

@@ -1,94 +1,85 @@
 import sys
+import os
 from antlr4 import *
 
-# Ensure grammar package relative path is findable if needed
-# (Adjust if your execution directory changes)
-# sys.path.append('./') # Usually needed if running from parent dir
-# sys.path.append('../') # May be needed if running from compiler/compiler?
+script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(script_dir)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
-# Make sure these imports work after regeneration
 try:
-    from grammar.TypeWhileLexer import TypeWhileLexer
-    from grammar.TypeWhileParser import TypeWhileParser
-    from grammar.TypeWhileVisitor import TypeWhileVisitor
+    from grammar.WhileLexer import WhileLexer
+    from grammar.WhileParser import WhileParser
+    from grammar.WhileVisitor import WhileVisitor
 except ImportError:
-    print("Error: Could not import ANTLR generated files.")
-    print("Ensure you are in the 'compiler/compiler' directory or adjust sys.path.")
-    print("Also ensure 'make' ran successfully in the 'grammar' directory.")
-    exit(1)
+    try:
+        from WhileLexer import WhileLexer
+        from WhileParser import WhileParser
+        from WhileVisitor import WhileVisitor
+    except ImportError as e:
+        print("Error: Could not import ANTLR generated files (WhileLexer/Parser/Visitor).", file=sys.stderr)
+        print("Ensure these files exist either directly or within a 'grammar' subdirectory", file=sys.stderr)
+        print(f"relative to the script's parent directory ({parent_dir}).", file=sys.stderr)
+        print("Also ensure ANTLR generation (e.g., 'make' in grammar dir) was successful.", file=sys.stderr)
+        print(f"Original error: {e}", file=sys.stderr)
+        sys.exit(1)
 
-# --- Helper Functions ---
-
-# Helper function to check if a type is an array type tuple
 def is_array_type(type_info):
     return isinstance(type_info, tuple) and len(type_info) == 3 and type_info[0] == 'array'
 
-# Helper function to get array base type
 def get_array_base_type(type_info):
     if is_array_type(type_info):
-        return type_info[1] # e.g., 'int' or 'bool'
+        return type_info[1]
     return None
 
-# Helper function to get array size
 def get_array_size(type_info):
     if is_array_type(type_info):
-        return type_info[2] # e.g., 10
+        return type_info[2]
     return None
 
-# --- Symbol Table (Global) ---
 symtab = {}
 
-# --- Type Checker Visitor ---
-
-class TypeChecker(TypeWhileVisitor):
+class TypeChecker(WhileVisitor):
     def __init__(self):
-        super().__init__() # Initialize the base visitor
+        super().__init__()
         self.has_error = False
 
-    # Central error reporting method
     def error(self, message, ctx=None):
         line = ctx.start.line if ctx and hasattr(ctx, 'start') else '?'
         col = ctx.start.column if ctx and hasattr(ctx, 'start') else '?'
-        print(f"type error (line {line}:{col}): {message}") # Keep error messages
+        print(f"type error (line {line}:{col}): {message}")
         self.has_error = True
-        # Return None to indicate error downstream if type was expected
         return None
 
-    # --- Statement Visitors ---
-
-    def visitDeclaration(self, ctx: TypeWhileParser.DeclarationContext):
+    def visitDeclaration(self, ctx: WhileParser.DeclarationContext):
         var_name = ctx.ID().getText()
-        base_type_name = ctx.typeName.text # 'int' or 'bool'
+        base_type_name = ctx.typeName.text
 
         if var_name in symtab:
             return self.error(f"redeclaration of variable '{var_name}'", ctx)
 
-        # Check if the size attribute (NUM token) exists
-        if hasattr(ctx, 'size') and ctx.size is not None: # Check for array declaration
+        if hasattr(ctx, 'size') and ctx.size is not None:
             try:
                 size = int(ctx.size.text)
                 if size <= 0:
                     return self.error(f"array size must be positive, got {size}", ctx)
-                # Store array type as ('array', base_type, size)
                 array_type_tuple = ('array', base_type_name, size)
                 symtab[var_name] = array_type_tuple
             except ValueError:
                 return self.error(f"invalid array size '{ctx.size.text}'", ctx)
-        else: # It's a scalar declaration
+        else:
             symtab[var_name] = base_type_name
 
 
-    def visitAssignment(self, ctx: TypeWhileParser.AssignmentContext):
-        # Visit the right-hand side expression first to get its type
+    def visitAssignment(self, ctx: WhileParser.AssignmentContext):
         value_ctx = ctx.e()
         value_type = self.visit(value_ctx)
-        if value_type is None: return # Error already reported in expression
+        if value_type is None: return
 
-        # Get the context for the *target* of the assignment (LHS)
         target_ctx = ctx.assignTarget()
 
         # Case 1: Target is a simple variable (AssignVarTargetContext)
-        if hasattr(target_ctx, 'AssignVarTargetContext') or isinstance(target_ctx, TypeWhileParser.AssignVarTargetContext):
+        if hasattr(target_ctx, 'AssignVarTargetContext') or isinstance(target_ctx, WhileParser.AssignVarTargetContext):
             var_name = target_ctx.ID().getText()
             if var_name not in symtab:
                 return self.error(f"assignment to undeclared variable '{var_name}'", target_ctx)
@@ -101,7 +92,7 @@ class TypeChecker(TypeWhileVisitor):
                 return self.error(f"type mismatch: cannot assign type '{value_type}' to variable '{var_name}' of type '{var_type_info}'", ctx)
 
         # Case 2: Target is an array element (AssignArrayTargetContext)
-        elif hasattr(target_ctx, 'AssignArrayTargetContext') or isinstance(target_ctx, TypeWhileParser.AssignArrayTargetContext):
+        elif hasattr(target_ctx, 'AssignArrayTargetContext') or isinstance(target_ctx, WhileParser.AssignArrayTargetContext):
             array_name = target_ctx.ID().getText()
 
             if array_name not in symtab:
@@ -113,7 +104,7 @@ class TypeChecker(TypeWhileVisitor):
 
             index_ctx = target_ctx.e()
             index_type = self.visit(index_ctx)
-            if index_type is None: return # Error already reported
+            if index_type is None: return
             if index_type != "int":
                 return self.error(f"array index must be 'int', but got '{index_type}'", index_ctx)
 
@@ -124,7 +115,7 @@ class TypeChecker(TypeWhileVisitor):
         else:
              return self.error("internal error: unknown assignment target type", ctx)
 
-    def visitIf(self, ctx: TypeWhileParser.IfContext):
+    def visitIf(self, ctx: WhileParser.IfContext):
         condition_ctx = ctx.e()
         condition_type = self.visit(condition_ctx)
         if condition_type is None: return
@@ -134,10 +125,10 @@ class TypeChecker(TypeWhileVisitor):
         if condition_type != "bool":
             return self.error(f"if condition must be 'bool', but got '{condition_type}'", condition_ctx)
 
-        self.visit(ctx.s(0)) # Visit then branch
-        self.visit(ctx.s(1)) # Visit else branch
+        self.visit(ctx.s(0))
+        self.visit(ctx.s(1))
 
-    def visitWhile(self, ctx: TypeWhileParser.WhileContext):
+    def visitWhile(self, ctx: WhileParser.WhileContext):
         condition_ctx = ctx.e()
         condition_type = self.visit(condition_ctx)
         if condition_type is None: return
@@ -147,34 +138,32 @@ class TypeChecker(TypeWhileVisitor):
         if condition_type != "bool":
             return self.error(f"while condition must be 'bool', but got '{condition_type}'", condition_ctx)
 
-        self.visit(ctx.s()) # Visit loop body
+        self.visit(ctx.s())
 
-    def visitCompound(self, ctx: TypeWhileParser.CompoundContext):
+    def visitCompound(self, ctx: WhileParser.CompoundContext):
         for statement in ctx.s():
             self.visit(statement)
 
-    def visitSkip(self, ctx: TypeWhileParser.SkipContext):
+    def visitSkip(self, ctx: WhileParser.SkipContext):
         pass
 
 
-    # --- Expression Visitors ---
-
-    def visitTrue(self, ctx: TypeWhileParser.TrueContext):
+    def visitTrue(self, ctx: WhileParser.TrueContext):
         return "bool"
 
-    def visitFalse(self, ctx: TypeWhileParser.FalseContext):
+    def visitFalse(self, ctx: WhileParser.FalseContext):
         return "bool"
 
-    def visitVar(self, ctx: TypeWhileParser.VarContext):
+    def visitVar(self, ctx: WhileParser.VarContext):
         var_name = ctx.ID().getText()
         if var_name not in symtab:
             return self.error(f"use of undeclared variable '{var_name}'", ctx)
         return symtab[var_name]
 
-    def visitNum(self, ctx: TypeWhileParser.NumContext):
+    def visitNum(self, ctx: WhileParser.NumContext):
         return "int"
 
-    def visitArrayAccess(self, ctx: TypeWhileParser.ArrayAccessContext):
+    def visitArrayAccess(self, ctx: WhileParser.ArrayAccessContext):
         array_name = ctx.ID().getText()
         if array_name not in symtab:
             return self.error(f"use of undeclared array '{array_name}'", ctx)
@@ -191,17 +180,15 @@ class TypeChecker(TypeWhileVisitor):
 
         return get_array_base_type(array_type_info)
 
-    # Visitors calling the binary operation helper
-    def visitEBinOpAddSub(self, ctx:TypeWhileParser.EBinOpAddSubContext):
+    def visitEBinOpAddSub(self, ctx: WhileParser.EBinOpAddSubContext):
         return self._check_bin_op(ctx, "int", "int")
-    def visitEBinOpMulDiv(self, ctx:TypeWhileParser.EBinOpMulDivContext):
+    def visitEBinOpMulDiv(self, ctx: WhileParser.EBinOpMulDivContext):
         return self._check_bin_op(ctx, "int", "int")
-    def visitEBinOpComp(self, ctx:TypeWhileParser.EBinOpCompContext):
+    def visitEBinOpComp(self, ctx: WhileParser.EBinOpCompContext):
         return self._check_bin_op(ctx, "int", "bool")
-    def visitEBinOpAndOr(self, ctx:TypeWhileParser.EBinOpAndOrContext):
+    def visitEBinOpAndOr(self, ctx: WhileParser.EBinOpAndOrContext):
         return self._check_bin_op(ctx, "bool", "bool")
 
-    # Common logic helper for binary operations
     def _check_bin_op(self, ctx, expected_operand_type, result_type):
         left_operand_ctx = ctx.getChild(0)
         right_operand_ctx = ctx.getChild(2)
@@ -224,8 +211,7 @@ class TypeChecker(TypeWhileVisitor):
 
         return result_type
 
-    # Handles 'not' operator
-    def visitENot(self, ctx: TypeWhileParser.ENotContext):
+    def visitENot(self, ctx: WhileParser.ENotContext):
         operand_ctx = ctx.unaryExpr()
         operand_type = self.visit(operand_ctx)
 
@@ -238,27 +224,22 @@ class TypeChecker(TypeWhileVisitor):
 
         return "bool"
 
-    # Handles parenthesized expressions
-    def visitParen(self, ctx: TypeWhileParser.ParenContext):
+    def visitParen(self, ctx: WhileParser.ParenContext):
         return self.visit(ctx.e())
 
-    # Visitor methods for intermediate expression rules
-    def visitEComp(self, ctx:TypeWhileParser.ECompContext):
+    def visitEComp(self, ctx: WhileParser.ECompContext):
         return self.visit(ctx.compExpr())
-    def visitEAdd(self, ctx:TypeWhileParser.EAddContext):
+    def visitEAdd(self, ctx: WhileParser.EAddContext):
         return self.visit(ctx.addExpr())
-    def visitEMult(self, ctx:TypeWhileParser.EMultContext):
+    def visitEMult(self, ctx: WhileParser.EMultContext):
         return self.visit(ctx.multExpr())
-    def visitEUnary(self, ctx:TypeWhileParser.EUnaryContext):
+    def visitEUnary(self, ctx: WhileParser.EUnaryContext):
         return self.visit(ctx.unaryExpr())
-    def visitEPrimary(self, ctx:TypeWhileParser.EPrimaryContext):
+    def visitEPrimary(self, ctx: WhileParser.EPrimaryContext):
         return self.visit(ctx.primaryExpr())
 
 
-# --- Main execution part ---
-
 if __name__ == "__main__":
-    # Read from stdin or file argument
     if len(sys.argv) > 1:
         input_filename = sys.argv[1]
         try:
@@ -273,27 +254,22 @@ if __name__ == "__main__":
         input_text = sys.stdin.read().strip()
         input_stream = InputStream(input_text)
 
-    # Standard ANTLR pipeline
-    lexer = TypeWhileLexer(input_stream)
+    lexer = WhileLexer(input_stream)
     stream = CommonTokenStream(lexer)
-    parser = TypeWhileParser(stream)
-    tree = parser.s() # Start parsing from the 's' rule
+    parser = WhileParser(stream)
+    tree = parser.s()
 
     if parser.getNumberOfSyntaxErrors() > 0:
-        # ANTLR already prints syntax errors to stderr
         print("Syntax errors detected. Type checking aborted.")
         exit(1)
 
-    # Perform type checking
-    symtab.clear() # Clear symtab for each run
+    symtab.clear()
     type_checker = TypeChecker()
     type_checker.visit(tree)
 
-    # Print symbol table contents in the desired format
     for name, type_info in symtab.items():
        print(f"symtab[{name}]: {type_info}")
 
-    # Determine and print exit code
     exit_code = 1 if type_checker.has_error else 0
     print(f"Exit code: {exit_code}")
     exit(exit_code)

@@ -1,10 +1,13 @@
 begin
+  int a;
+  int b;
   a := 10;
   b := 5;
+  int result;
   result := 0;
   if a > b then
     if a = 10 then
-      result := 1
+      result := 1 // This path should be taken
     else
       result := 2
   else
@@ -12,5 +15,6 @@ begin
       result := 3
     else
       result := 4;
-  final := result
+  int final;
+  final := result // final should be 1
 end

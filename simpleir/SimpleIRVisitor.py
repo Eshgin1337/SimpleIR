@@ -1,4 +1,4 @@
-# Generated from SimpleIR.g4 by ANTLR 4.7.2
+# Generated from SimpleIR.g4 by ANTLR 4.9.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .SimpleIRParser import SimpleIRParser
@@ -44,8 +44,68 @@ class SimpleIRVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by SimpleIRParser#statement.
-    def visitStatement(self, ctx:SimpleIRParser.StatementContext):
+    # Visit a parse tree produced by SimpleIRParser#AssignInstr.
+    def visitAssignInstr(self, ctx:SimpleIRParser.AssignInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#DereferenceInstr.
+    def visitDereferenceInstr(self, ctx:SimpleIRParser.DereferenceInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#ReferenceInstr.
+    def visitReferenceInstr(self, ctx:SimpleIRParser.ReferenceInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#AssignDereferenceInstr.
+    def visitAssignDereferenceInstr(self, ctx:SimpleIRParser.AssignDereferenceInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#OperationInstr.
+    def visitOperationInstr(self, ctx:SimpleIRParser.OperationInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#CallInstr.
+    def visitCallInstr(self, ctx:SimpleIRParser.CallInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#LabelInstr.
+    def visitLabelInstr(self, ctx:SimpleIRParser.LabelInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#GotoInstr.
+    def visitGotoInstr(self, ctx:SimpleIRParser.GotoInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#IfGotoInstr.
+    def visitIfGotoInstr(self, ctx:SimpleIRParser.IfGotoInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#AllocInstr.
+    def visitAllocInstr(self, ctx:SimpleIRParser.AllocInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#AddrInstr.
+    def visitAddrInstr(self, ctx:SimpleIRParser.AddrInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#LoadInstr.
+    def visitLoadInstr(self, ctx:SimpleIRParser.LoadInstrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#StoreInstr.
+    def visitStoreInstr(self, ctx:SimpleIRParser.StoreInstrContext):
         return self.visitChildren(ctx)
 
 
@@ -91,6 +151,26 @@ class SimpleIRVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by SimpleIRParser#ifGoto.
     def visitIfGoto(self, ctx:SimpleIRParser.IfGotoContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#allocStmt.
+    def visitAllocStmt(self, ctx:SimpleIRParser.AllocStmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#addrStmt.
+    def visitAddrStmt(self, ctx:SimpleIRParser.AddrStmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#loadStmt.
+    def visitLoadStmt(self, ctx:SimpleIRParser.LoadStmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpleIRParser#storeStmt.
+    def visitStoreStmt(self, ctx:SimpleIRParser.StoreStmtContext):
         return self.visitChildren(ctx)
 
 

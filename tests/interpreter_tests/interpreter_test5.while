@@ -1,9 +1,10 @@
 begin
-  int x;
-  int y;
-  x := 5;
-  if not (x = 5) then
-    y := 0
-  else
-    y := 100
+ int data[2];
+ int y;
+ data[0] := 5; 
+ data[1] := 1; 
+ if not (data[ data[1] - 1 ] = 5) then 
+  y := 0
+ else
+  y := 100
 end

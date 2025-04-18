@@ -1,4 +1,6 @@
 begin
-  x := (5 + 3) * 2;
-  y := x - 1
+  int arr[2]; 
+  arr[0] := (5 + 3) * 2; 
+  int y;
+  y := arr[0] - 1 
 end

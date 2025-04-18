@@ -1,7 +1,7 @@
 begin
   int a[5];
-  int x;
   a[1] := 10;
   a[2] := 20;
-  int x := a[1]
+  int x; 
+  x := a[1]
 end

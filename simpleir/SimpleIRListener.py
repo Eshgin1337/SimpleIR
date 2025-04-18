@@ -1,4 +1,4 @@
-# Generated from SimpleIR.g4 by ANTLR 4.7.2
+# Generated from SimpleIR.g4 by ANTLR 4.9.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .SimpleIRParser import SimpleIRParser
@@ -71,12 +71,120 @@ class SimpleIRListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SimpleIRParser#statement.
-    def enterStatement(self, ctx:SimpleIRParser.StatementContext):
+    # Enter a parse tree produced by SimpleIRParser#AssignInstr.
+    def enterAssignInstr(self, ctx:SimpleIRParser.AssignInstrContext):
         pass
 
-    # Exit a parse tree produced by SimpleIRParser#statement.
-    def exitStatement(self, ctx:SimpleIRParser.StatementContext):
+    # Exit a parse tree produced by SimpleIRParser#AssignInstr.
+    def exitAssignInstr(self, ctx:SimpleIRParser.AssignInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#DereferenceInstr.
+    def enterDereferenceInstr(self, ctx:SimpleIRParser.DereferenceInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#DereferenceInstr.
+    def exitDereferenceInstr(self, ctx:SimpleIRParser.DereferenceInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#ReferenceInstr.
+    def enterReferenceInstr(self, ctx:SimpleIRParser.ReferenceInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#ReferenceInstr.
+    def exitReferenceInstr(self, ctx:SimpleIRParser.ReferenceInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#AssignDereferenceInstr.
+    def enterAssignDereferenceInstr(self, ctx:SimpleIRParser.AssignDereferenceInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#AssignDereferenceInstr.
+    def exitAssignDereferenceInstr(self, ctx:SimpleIRParser.AssignDereferenceInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#OperationInstr.
+    def enterOperationInstr(self, ctx:SimpleIRParser.OperationInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#OperationInstr.
+    def exitOperationInstr(self, ctx:SimpleIRParser.OperationInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#CallInstr.
+    def enterCallInstr(self, ctx:SimpleIRParser.CallInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#CallInstr.
+    def exitCallInstr(self, ctx:SimpleIRParser.CallInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#LabelInstr.
+    def enterLabelInstr(self, ctx:SimpleIRParser.LabelInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#LabelInstr.
+    def exitLabelInstr(self, ctx:SimpleIRParser.LabelInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#GotoInstr.
+    def enterGotoInstr(self, ctx:SimpleIRParser.GotoInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#GotoInstr.
+    def exitGotoInstr(self, ctx:SimpleIRParser.GotoInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#IfGotoInstr.
+    def enterIfGotoInstr(self, ctx:SimpleIRParser.IfGotoInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#IfGotoInstr.
+    def exitIfGotoInstr(self, ctx:SimpleIRParser.IfGotoInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#AllocInstr.
+    def enterAllocInstr(self, ctx:SimpleIRParser.AllocInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#AllocInstr.
+    def exitAllocInstr(self, ctx:SimpleIRParser.AllocInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#AddrInstr.
+    def enterAddrInstr(self, ctx:SimpleIRParser.AddrInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#AddrInstr.
+    def exitAddrInstr(self, ctx:SimpleIRParser.AddrInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#LoadInstr.
+    def enterLoadInstr(self, ctx:SimpleIRParser.LoadInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#LoadInstr.
+    def exitLoadInstr(self, ctx:SimpleIRParser.LoadInstrContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#StoreInstr.
+    def enterStoreInstr(self, ctx:SimpleIRParser.StoreInstrContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#StoreInstr.
+    def exitStoreInstr(self, ctx:SimpleIRParser.StoreInstrContext):
         pass
 
 
@@ -161,3 +269,41 @@ class SimpleIRListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SimpleIRParser#allocStmt.
+    def enterAllocStmt(self, ctx:SimpleIRParser.AllocStmtContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#allocStmt.
+    def exitAllocStmt(self, ctx:SimpleIRParser.AllocStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#addrStmt.
+    def enterAddrStmt(self, ctx:SimpleIRParser.AddrStmtContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#addrStmt.
+    def exitAddrStmt(self, ctx:SimpleIRParser.AddrStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#loadStmt.
+    def enterLoadStmt(self, ctx:SimpleIRParser.LoadStmtContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#loadStmt.
+    def exitLoadStmt(self, ctx:SimpleIRParser.LoadStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpleIRParser#storeStmt.
+    def enterStoreStmt(self, ctx:SimpleIRParser.StoreStmtContext):
+        pass
+
+    # Exit a parse tree produced by SimpleIRParser#storeStmt.
+    def exitStoreStmt(self, ctx:SimpleIRParser.StoreStmtContext):
+        pass
+
+
+
+del SimpleIRParser

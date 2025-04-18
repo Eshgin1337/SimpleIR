@@ -1,0 +1,12 @@
+begin
+  int flags[2];
+  bool check; 
+  flags[0] := 1; 
+  flags[1] := 0; 
+  check := flags[0] and (not flags[1]); 
+  int result;
+  if check then
+     result := 99 
+  else
+     result := -1;
+end

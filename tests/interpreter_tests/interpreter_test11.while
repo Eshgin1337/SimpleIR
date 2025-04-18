@@ -1,0 +1,17 @@
+begin
+ bool flags[3];
+ bool allSet;
+ flags[0] := true;
+ flags[1] := (10 > 5); 
+ flags[2] := not (flags[0]); 
+
+ if flags[0] and flags[1] then
+  allSet := true
+ else 
+  allSet := false; 
+
+ if flags[2] or (not allSet) then
+    flags[0] := false 
+ else 
+    flags[1] := false
+end

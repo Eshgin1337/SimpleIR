@@ -1,4 +1,6 @@
 begin
-  if true then x := 1 else x := 0;
-  y := x
+  int x[1];
+  int y;
+  x[0] := 5;
+  y := x[0]
 end

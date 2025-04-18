@@ -1,55 +1,93 @@
 grammar SimpleIR;
 
+
 unit: function;
 
-function: 'function' functionName=NAME localVariables? parameters? statements returnStatement end;
+function: FUNCTION functionName=NAME localVariables? parameters? statements returnStatement end;
 
-localVariables: 'localVariables' variables=NAME+;
-
-parameters: 'parameters' formals=NAME+;
-
+localVariables: LOCAL NAME (COMMA NAME)*; // Removed variables= label
+parameters: PARAMETERS NAME+;       // Removed formals= label
 statements: statement*;
+returnStatement: RETURN operand=(NAME | NUM);
+end: END FUNCTION; // Use tokens
 
-returnStatement: 'return' operand=(NAME | NUM);
+// Statement rule with labels for all alternatives
+statement
+    : assign                # AssignInstr
+    | dereference           # DereferenceInstr
+    | reference             # ReferenceInstr
+    | assignDereference     # AssignDereferenceInstr
+    | operation             # OperationInstr
+    | call                  # CallInstr
+    | label                 # LabelInstr
+    | gotoStatement         # GotoInstr
+    | ifGoto                # IfGotoInstr
+    | allocStmt             # AllocInstr  // NEW
+    | addrStmt              # AddrInstr   // NEW
+    | loadStmt              # LoadInstr   // NEW
+    | storeStmt             # StoreInstr  // NEW
+    ;
 
-end: 'end' 'function';
+// Existing instruction rules (using Token names)
+operation: NAME ASSIGN NAME operatorKind=(PLUS | MINUS | STAR | SLASH | PERCENT) NAME;
+assign: NAME ASSIGN operand=(NAME | NUM);
+dereference: NAME ASSIGN STAR NAME;
+reference: NAME ASSIGN AMPERSAND NAME; // Using & token now
+assignDereference: STAR NAME ASSIGN operand=(NAME | NUM);
+call: NAME ASSIGN CALL NAME NAME*; // result := call func args*
+label: NAME COLON;
+gotoStatement: GOTO NAME;
+ifGoto: IF operand1=(NAME | NUM) operatorKind=(EQ | NEQ | LT | LTE | GT | GTE) operand2=(NAME | NUM) GOTO NAME;
 
-statement: assign | dereference | reference | assignDereference | operation | call | label | gotoStatement | ifGoto;
+// New rules for array operations
+allocStmt : ALLOC NAME COMMA NUM ;                 // alloc arrayName, sizeInElements
+addrStmt  : NAME ASSIGN ADDR NAME COMMA NAME ;     // resultAddr := addr baseName, indexNameOrTemp
+loadStmt  : NAME ASSIGN LOAD NAME ;                // resultVal := load addressNameOrTemp
+storeStmt : STORE NAME COMMA NAME ;                // store valueNameOrTemp, addressNameOrTemp
 
-operation: variable=NAME ':=' operand1=(NAME | NUM) operatorKind=('+' | '-' | '*' | '/' | '%') operand2=(NAME | NUM);
+FUNCTION : 'function';
+LOCAL : 'local';
+PARAMETERS : 'parameters';
+RETURN : 'return';
+END : 'end';
+CALL : 'call';
+GOTO : 'goto';
+IF : 'if';
+ALLOC : 'alloc'; // NEW
+ADDR  : 'addr';  // NEW
+LOAD  : 'load';  // NEW
+STORE : 'store'; // NEW
 
-assign: variable=NAME ':=' operand=(NAME | NUM);
+// Use NAME for variables, temps (_t...), labels, function names
+NAME: [a-zA-Z_] ([a-zA-Z_] | [0-9])* ; // Generic identifier MUST BE AFTER keywords
+NUM: [0-9]+ ;                         // Integer literal
 
-dereference: variable=NAME ':=' '*' operand=NAME;
+// Operators / Symbols
+ASSIGN   : ':=' ;
+LPAREN   : '(' ; // Retained if needed elsewhere, not used above
+RPAREN   : ')' ; // Retained if needed elsewhere, not used above
+LBRACKET : '[' ; // Retained if needed elsewhere, not used above
+RBRACKET : ']' ; // Retained if needed elsewhere, not used above
+SEMI     : ';' ; // Retained if needed elsewhere, not used above
+COMMA    : ',' ; // Needed for new instructions
+AMPERSAND: '&' ; // For reference operator
+STAR     : '*' ; // For dereference ops AND mult op
+COLON    : ':' ; // For labels
 
-reference: variable=NAME ':=' '&' operand=NAME;
+PLUS     : '+' ;
+MINUS    : '-' ;
+// STAR used for MULT
+SLASH    : '/' ;
+PERCENT  : '%' ;
 
-assignDereference: '*' variable=NAME ':=' operand=(NAME | NUM);
+EQ       : '=' ;
+NEQ      : '!=' ;
+LT       : '<' ;
+LTE      : '<=' ;
+GT       : '>' ;
+GTE      : '>=' ;
 
-call: variable=NAME ':=' 'call' functionName=NAME actuals=NAME*;
-
-label: labelName=NAME ':';
-
-gotoStatement: 'goto' labelName=NAME;
-
-ifGoto: 'if' operand1=(NAME | NUM) operatorKind=('=' | '!=' | '<' | '<=' | '>' | '>=') operand2=(NAME | NUM) 'goto' labelName=NAME;
-
-NAME: [a-zA-Z_] ([a-zA-Z_] | [0-9])* ;
-NUM: [0-9]+ ;
-
-PLUS: '+' ;
-MINUS: '-' ;
-STAR: '*' ;
-SLASH: '/' ;
-PERCENT: '%' ;
-
-EQ: '=' ;
-NEQ: '!=' ;
-LT: '<' ;
-LTE: '<=' ;
-GT: '>' ;
-GTE: '>=' ;
-
-WS:   [ \t\r\n]+ -> skip ;
-
+// Whitespace - Discarded by the lexer
+WS      : [ \t\r\n]+ -> skip ;
+// Comments - Discarded by the lexer
 COMMENT : '#' ~[\r\n]* -> skip ;

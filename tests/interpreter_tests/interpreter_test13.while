@@ -1,0 +1,11 @@
+begin
+ int data[3];
+ int temp;
+ data[0] := 100;
+ data[1] := 200;
+ data[2] := 300;
+
+ temp := data[0];
+ data[0] := data[2];
+ data[2] := temp
+end

@@ -1,10 +1,12 @@
 begin
+  int x;
   x := 1;
   begin
     skip;
-    x := x + 2;
+    x := x + 2; 
     skip
   end;
-  y := x + 3;
+  int y;
+  y := x + 3; 
   skip
 end

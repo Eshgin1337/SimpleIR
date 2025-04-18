@@ -1,12 +1,23 @@
 begin
+  int data[5];
+  int i;
+  int limit;
+  int accum;
+
   i := 0;
   limit := 5;
+  while i < limit do begin
+    data[i] := i + 1; 
+    i := i + 1
+  end;
+
+  i := 0;
   accum := 10;
   while i < limit do begin
-    if i < 3 then
-      accum := accum + 1
+    if data[i] < 4 then 
+      accum := accum + data[i] 
     else
-      skip;
+      skip; 
     i := i + 1
   end
 end

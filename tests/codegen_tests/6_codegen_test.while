@@ -1,4 +1,7 @@
 begin
+  int outer;
+  int inner;
+  int count;
   outer := 0;
   inner := 0;
   count := 0;

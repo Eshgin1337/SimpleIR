@@ -1,0 +1,19 @@
+begin
+ int scores[5];
+ int maxScore;
+ int i;
+ scores[0] := 77;
+ scores[1] := 92;
+ scores[2] := 85;
+ scores[3] := 95;
+ scores[4] := 88;
+ maxScore := scores[0];
+ i := 1;
+ while i < 5 do begin
+  if scores[i] > maxScore then
+   maxScore := scores[i]
+  else 
+   skip;
+  i := i + 1
+ end
+end

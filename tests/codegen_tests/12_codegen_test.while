@@ -1,0 +1,13 @@
+begin
+  int items[4];
+  int index;
+  int itemVal;
+  items[0] := 100;
+  items[1] := 200;
+  items[2] := 300;
+  items[3] := 400;
+  index := 2;
+  itemVal := items[index]; 
+  items[index + 1] := itemVal + 50; 
+  itemVal := items[3] 
+end

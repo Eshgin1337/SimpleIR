@@ -1,0 +1,13 @@
+begin
+   int source[3];
+   int dest[3];
+   int i;
+   i := 0;
+   source[0] := 5;
+   source[1] := 10;
+   source[2] := 15;
+   while i < 3 do begin
+      dest[i] := source[i];
+      i := i + 1
+   end
+end

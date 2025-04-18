@@ -1,9 +1,14 @@
-begin int x; int y;
+begin 
+  int data[10]; 
+  int x; 
+  int y;
   x := 2;
   y := 1;
   if x > 0 and y > 0 then begin
-    while y < 10 do
-      y := y + x;
+    while y < 10 do begin 
+    data[y - 1] := y * x; 
+    y := y + x
+    end;
     y := y * 2
   end else
     skip

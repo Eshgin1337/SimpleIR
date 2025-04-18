@@ -1,4 +1,6 @@
 begin
-  x := 3;
-  while x > 0 do x := x - 1
+  int x;
+int y;
+  x := 5;
+  y := x
 end
