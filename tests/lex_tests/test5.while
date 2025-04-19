@@ -1,5 +1,5 @@
-int n := 5
-int factorial := 1
-while n > 0 do
-  factorial := factorial * n
-  n := n - 1
+begin
+  int mix[1];
+  mix[0]:=(1+2)*(3-4)/5;
+  if mix[0]>0 then skip else mix[0]:=1;
+end

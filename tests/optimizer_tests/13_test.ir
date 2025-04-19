@@ -1,0 +1,7 @@
+function main
+  a := 1
+  b := a
+  c := b
+  d := c
+  return 99
+end function

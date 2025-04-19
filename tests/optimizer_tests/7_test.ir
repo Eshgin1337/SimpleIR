@@ -1,7 +1,15 @@
-function test6
-  ptr := call get_pointer 
-  val := 100               
-  dead_result := call print  
-  dummy := call cleanup      
-  return 0
+function main
+  x := 0
+  _t1 := 1
+  _t10 := 10
+  _t20 := 20
+L1:
+  if x = _t1 goto L2
+  live1 := _t10
+  goto L3
+L2:
+  dead2 := _t20
+L3:
+  y := live1
+  return y
 end function

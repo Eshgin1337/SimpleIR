@@ -8,5 +8,5 @@ begin
   if check then
      result := 99 
   else
-     result := -1;
+     result := 1
 end

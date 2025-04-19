@@ -112,5 +112,3 @@ DIV      : '/' ;
 // Whitespace - Discarded by the lexer
 WS  : [ \t\n\r]+ -> skip ;
 
-// Optional: Single-line comments - Discarded by the lexer
-// SL_COMMENT:  '//' .*? '\n' -> skip ;

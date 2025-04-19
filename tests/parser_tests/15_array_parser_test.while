@@ -1,0 +1,15 @@
+begin bool a; bool b; bool c;
+  
+  
+  int result;
+  a := true;
+  b := false;
+  
+  
+c := (a or b) and (not (a and b)); if c then 
+    result := 1 
+  else skip;
+  if not c then result := 0 
+  else 
+    skip
+end

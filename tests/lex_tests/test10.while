@@ -1,0 +1,4 @@
+begin 
+  bool result; 
+  result := true and false or not true; 
+end

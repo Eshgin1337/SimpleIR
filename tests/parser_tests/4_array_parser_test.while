@@ -1,1 +1,7 @@
-begin int i;int a[4];i:=0;while i<4 do begin a[i]:=i*i;i:=i+1 end end
+begin int i;int a[4];
+
+
+i:=0;while i<4 do begin a[i]:=i*i;i:=i+1 
+
+
+end end

@@ -1,6 +1,12 @@
-function test3
-  x := 5
-  y := x + 1
-  z := y * 2
-  return z
+function main
+  alloc B, 2
+  _t1 := 0
+  _t2 := 11
+  _t3 := addr B, _t1
+  store _t2, _t3
+  _t4 := 0
+  _t5 := addr B, _t4
+  _t6 := load _t5
+  dead_y := _t6
+  return 0
 end function

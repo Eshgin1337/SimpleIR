@@ -1,6 +1,5 @@
 begin
-  int a;
-  bool b;
-  a := 10;
-  b := (a < 20) and true
+  int x;
+  x := 1;
+  if x then skip else x := 3 
 end

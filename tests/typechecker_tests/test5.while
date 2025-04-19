@@ -1,3 +1,4 @@
 begin
-  x := 10
+  int x;
+  bool x 
 end

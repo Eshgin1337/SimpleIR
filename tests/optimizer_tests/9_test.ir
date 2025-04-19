@@ -1,16 +1,13 @@
-function test8
+function main
   i := 0
-  limit := 10
-  sum := 0    
-  unused_in_loop := 5 
-LoopStart:
-  if i < limit goto LoopBody
-  goto LoopEnd
-LoopBody:
-  # sum := sum + i 
-  i := i + 1
-  goto LoopStart
-LoopEnd:
-  dead_after := i
-  return i
+  _t1 := 3
+  live_sum := 100
+L1:
+  if i >= _t1 goto L2
+  live_sum := live_sum + i
+  _t2 := 1
+  i := i + _t2
+  goto L1
+L2:
+  return live_sum
 end function

@@ -1,0 +1,11 @@
+function main
+  alloc P, 1
+  _t1 := 0
+  ptr := addr P, _t1
+  _t2 := 42
+  *ptr := _t2
+  _t3 := 0
+  ptr2 := addr P, _t3
+  y := load ptr2
+  return y
+end function

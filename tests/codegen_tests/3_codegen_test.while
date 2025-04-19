@@ -1,6 +1,6 @@
 begin
   int x;
-int y;
+  int y;
   x := 5;
   y := x
 end

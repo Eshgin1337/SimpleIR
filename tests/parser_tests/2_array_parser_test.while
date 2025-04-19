@@ -1,1 +1,5 @@
-begin int i;int a[2];i:=2;a[1]:=5;a[i-1]:=8;x:=a[1] end
+begin 
+int i;int a[2];i:=2;a[1]:=5;a[i-1]:=8;
+
+
+x:=a[1] end

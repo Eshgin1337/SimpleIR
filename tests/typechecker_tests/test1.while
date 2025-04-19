@@ -1,4 +1,6 @@
 begin
-  int x;
-  x := 5
+  int arr[1];
+  bool y;
+  arr[0] := (5 + 3) * (10 - 2); 
+  y := not (arr[0] < 50) or (true and false) 
 end

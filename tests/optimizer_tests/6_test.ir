@@ -1,11 +1,14 @@
-function test5
-  y := 0
-  z := 10
-  if y != 0 goto L1
-  goto L2
+function main
+  x := 1
+  _t1 := 1
 L1:
-  dead_var := 5
-  z := 20
+  if x = _t1 goto L2
+  _t2 := 10
+  dead := _t2
+  goto L3
 L2:
-  return z
+  _t3 := 5
+  live := _t3
+L3:
+  return live
 end function

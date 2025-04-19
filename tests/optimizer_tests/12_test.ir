@@ -1,28 +1,27 @@
 function main
-  alloc DATA, 3
+  alloc VALS, 2
   i := 0
-  _t1 := 3
+  _t1 := 2
 L1:
   if i >= _t1 goto L2
-  _t2 := addr DATA, i
-  _t_literal_10 := 10
-  _t3 := _t_literal_10 + i
+  _t2 := addr VALS, i
+  _t3 := 5
   store _t3, _t2
   _t4 := 1
   i := i + _t4
   goto L1
 L2:
   i := 0
-  sum := 0
-  _t5 := 3
+  dead_sum := 0
+  _t5 := 2
 L3:
   if i >= _t5 goto L4
-  _t6 := addr DATA, i
+  _t6 := addr VALS, i
   _t7 := load _t6
-  sum := sum + _t7
+  dead_sum := dead_sum + _t7
   _t8 := 1
   i := i + _t8
   goto L3
 L4:
-  return sum
+  return 0
 end function

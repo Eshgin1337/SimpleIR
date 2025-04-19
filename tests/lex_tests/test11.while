@@ -1,0 +1,8 @@
+begin 
+  bool cmp; 
+  cmp := 1<2; 
+  cmp := 3<=3; 
+  cmp := 4=4; 
+  cmp := 5>4; 
+  cmp := 6>=5; 
+end

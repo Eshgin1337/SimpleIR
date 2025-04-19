@@ -1,6 +1,8 @@
-function test2
-  a := 100  
-  a := 200  
-  b := a  
-  return b
+function main
+  alloc A, 1
+  _t1 := 0
+  _t2 := 99
+  _t3 := addr A, _t1
+  store _t2, _t3
+  return 0
 end function

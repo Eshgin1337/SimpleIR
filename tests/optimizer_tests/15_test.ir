@@ -1,0 +1,11 @@
+function main
+  alloc Q, 1
+  _t1 := 0
+  p := addr Q, _t1
+  _t2 := 55
+  *p := _t2
+  _t3 := 0
+  p2 := addr Q, _t3
+  dead_y := load p2
+  return 0
+end function

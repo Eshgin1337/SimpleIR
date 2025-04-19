@@ -1,5 +1,4 @@
-int x := 5
-int y := 0
-while x > 0 do
-  y := y + x
-  x := x - 1
+begin
+  bool  flags [ 2 ] ;
+  flags [ 1 ] := true ;
+end

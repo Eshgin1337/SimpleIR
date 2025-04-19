@@ -1,0 +1,7 @@
+begin
+  bool flags[5];
+  int result;
+  flags[0] := true; 
+  result := 1; 
+  result := flags[true] 
+end

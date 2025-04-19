@@ -1,10 +1,12 @@
-function test4
-  a := 10    
-  b := 0
-  dead_val := 50 
-  if b != 0 goto L1
-  a := 20    
-L1:
-  c := a   
-  return c
+function main
+  alloc C, 1
+  _t1 := 0
+  _t2 := 77
+  _t3 := addr C, _t1
+  store _t2, _t3
+  _t4 := 0
+  _t5 := addr C, _t4
+  _t6 := load _t5
+  live_y := _t6
+  return live_y
 end function

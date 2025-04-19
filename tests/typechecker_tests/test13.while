@@ -1,0 +1,6 @@
+begin
+  int nums[1];
+  bool flag;
+  nums[0] := 456; 
+  flag := nums[0] 
+end

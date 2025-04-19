@@ -1,6 +1,4 @@
-int a := 15
-int b := 10
-if a > b then
-  int result := a - b
-else
-  int result := b - a
+begin
+  int data[5];
+  data[1+2]:=0;
+end

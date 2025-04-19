@@ -1,0 +1,6 @@
+begin
+  int scalar;
+  int value;
+  scalar := 10;
+  value := scalar[0] 
+end

@@ -1,9 +1,13 @@
-function test7
-  a := 1
-  b := 2
-  c := a + 3
-  d := 4
-  e := c * 5
-  f := 6
-  return e
+function main
+  i := 0
+  _t1 := 5
+  dead_sum := 0
+L1:
+  if i >= _t1 goto L2
+  dead_sum := dead_sum + i
+  _t2 := 1
+  i := i + _t2
+  goto L1
+L2:
+  return 0
 end function

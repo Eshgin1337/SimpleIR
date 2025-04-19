@@ -1,4 +1,4 @@
-int x := 10
-int y := 20
-int z := x + y
-int result := z * 2 - x / 5
+begin 
+    int ids[10];
+    ids[0]:=5;
+end

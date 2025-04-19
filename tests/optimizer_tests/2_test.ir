@@ -1,7 +1,5 @@
-function test1
-  a := 10    
-  b := 20    
-  c := 30    
-  unused := 99 
-  return b
+function main
+  x := 5
+  y := x
+  return y
 end function

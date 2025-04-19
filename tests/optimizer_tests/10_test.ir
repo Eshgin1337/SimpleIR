@@ -1,7 +1,15 @@
-function test9
-  a := 5
-  b := a + 1
-  c := b * 2  
-  d := c + a  
-  return b
+function main
+  alloc ARR, 4
+  i := 0
+  _t1 := 4
+L1:
+  if i >= _t1 goto L2
+  _t2 := addr ARR, i
+  _t3 := i * i
+  store _t3, _t2
+  _t4 := 1
+  i := i + _t4
+  goto L1
+L2:
+  return 0
 end function

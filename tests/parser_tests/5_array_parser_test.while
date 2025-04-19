@@ -1,1 +1,6 @@
-begin int a[3];int i;int sum;a[0]:=5;a[1]:=6;a[2]:=7;i:=0;sum:=0;while i<3 do begin sum:=sum+a[i];i:=i+1 end end
+begin int a[3];int i;
+
+int sum; 
+
+
+a[0]:=5;a[1]:=6;a[2]:=7;i:=0;sum:=0;while i<3 do begin sum:=sum+a[i];i:=i+1 end end

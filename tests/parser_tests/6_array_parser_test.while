@@ -1,1 +1,7 @@
-begin int a[12];int x;a[10]:=5;a[11]:=2;if a[10]>a[11]*2 then x:=1 else x:=0 end
+begin int a[12];int x;a[10]:=5;
+a[11]:=2;
+
+
+
+
+if a[10]>a[11]*2 then x:=1 else x:=0 end

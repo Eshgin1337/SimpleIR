@@ -1,6 +1,6 @@
 begin
-  int x;
-  bool y;
-  x := (5 + 3) * (10 - 2);
-  y := not (x < 50) or (true and false)
+  int a[1];
+  bool b;
+  a[0] := 10;
+  b := (a[0] < 20) and true 
 end

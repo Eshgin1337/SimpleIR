@@ -1,0 +1,7 @@
+begin
+	int longVarName1[ 5 ] ; 
+	bool anotherBool2 ;
+
+	longVarName1 [ 0 ] := 12345 ; 
+	anotherBool2 := true ;
+end

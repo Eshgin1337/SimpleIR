@@ -1,5 +1,4 @@
 begin
-  int x;
-  bool x
+  int x[1]; 
+  x[0] := 5 
 end
-

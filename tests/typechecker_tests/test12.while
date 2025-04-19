@@ -1,0 +1,6 @@
+begin
+  int items[2];
+  int itemVal;
+  items[0] := 123; 
+  itemVal := items[0] 
+end

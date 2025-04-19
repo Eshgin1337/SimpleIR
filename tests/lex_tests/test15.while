@@ -1,0 +1,5 @@
+begin 
+  int goodID1; 
+  int bad_ID;
+  goodID1 := 1; 
+end

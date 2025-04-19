@@ -7,5 +7,5 @@ begin
   if data[selector] = 10 then 
      skip 
   else
-     data[1] := 99; 
+     data[1] := 99
 end

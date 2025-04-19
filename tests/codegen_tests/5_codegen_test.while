@@ -7,7 +7,7 @@ begin
   result := 0;
   if a > b then
     if a = 10 then
-      result := 1 // This path should be taken
+      result := 1 
     else
       result := 2
   else
@@ -16,5 +16,5 @@ begin
     else
       result := 4;
   int final;
-  final := result // final should be 1
+  final := result 
 end

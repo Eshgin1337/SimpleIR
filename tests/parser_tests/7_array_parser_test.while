@@ -1,1 +1,2 @@
-begin int idx[1];int data[3];int val;idx[0]:=2;data[2]:=123;val:=data[idx[0]] end
+begin int idx[1];int data[3];int val;
+idx[0]:=2;data[2]:=123;val:=data[idx[0]] end

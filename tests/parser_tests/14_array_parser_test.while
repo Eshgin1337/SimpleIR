@@ -1,0 +1,7 @@
+begin
+  int firstVar; firstVar := 100; bool secondVar;   
+  secondVar := true;             
+
+
+
+  firstVar := firstVar - 50 end 

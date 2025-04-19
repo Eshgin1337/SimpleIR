@@ -1,0 +1,6 @@
+begin
+  int a;
+  bool b;
+  a := 5;
+  b := a + 3 
+end
